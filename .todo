@@ -1,0 +1,2 @@
+[ ] create function `createGame()` that return a playable sudoku game with difficulty parameters (easy, medium, hard, specialist) applied
+[ ] verify and apply possible optimizations improvements
