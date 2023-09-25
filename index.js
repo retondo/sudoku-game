@@ -3,6 +3,7 @@
  */
 function printGame(game) {
   const out = process.stdout;
+  out.write('\n');
 
   for (let i = 0; i < game.length; i++) {
     if (i === 0) {
@@ -84,7 +85,9 @@ function getSquare(matrix, row, column) {
     columnStartEndIndexes = [3, 6];
   }
 
-  return rowIndexes.map((i) => matrix[i].slice(...columnStartEndIndexes)).flat();
+  return rowIndexes
+    .map((i) => matrix[i].slice(...columnStartEndIndexes))
+    .flat();
 }
 
 /**
@@ -139,6 +142,5 @@ function generateBoard(
 console.time('execution time');
 const sudoku = generateBoard();
 console.timeEnd('execution time');
-console.log();
 
 printGame(sudoku);
