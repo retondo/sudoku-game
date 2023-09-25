@@ -65,33 +65,26 @@ function getColumn(matrix, index) {
  * @returns {string[]}
  */
 function getSquare(matrix, row, column) {
-  if (row < 3) {
-    if (column < 3) {
-      return [0, 1, 2].map((i) => matrix[i].slice(0, 3)).flat();
-    }
-    if (column >= 6) {
-      return [0, 1, 2].map((i) => matrix[i].slice(6, 9)).flat();
-    }
-    return [0, 1, 2].map((i) => matrix[i].slice(3, 6)).flat();
-  }
+  let rowIndexes;
+  let columnStartEndIndexes;
 
-  if (row >= 6) {
-    if (column < 3) {
-      return [6, 7, 8].map((i) => matrix[i].slice(0, 3)).flat();
-    }
-    if (column >= 6) {
-      return [6, 7, 8].map((i) => matrix[i].slice(6, 9)).flat();
-    }
-    return [6, 7, 8].map((i) => matrix[i].slice(3, 6)).flat();
+  if (row < 3) {
+    rowIndexes = [0, 1, 2];
+  } else if (row >= 6) {
+    rowIndexes = [6, 7, 8];
+  } else {
+    rowIndexes = [3, 4, 5];
   }
 
   if (column < 3) {
-    return [3, 4, 5].map((i) => matrix[i].slice(0, 3)).flat();
+    columnStartEndIndexes = [0, 3];
+  } else if (column >= 6) {
+    columnStartEndIndexes = [6, 9];
+  } else {
+    columnStartEndIndexes = [3, 6];
   }
-  if (column >= 6) {
-    return [3, 4, 5].map((i) => matrix[i].slice(6, 9)).flat();
-  }
-  return [3, 4, 5].map((i) => matrix[i].slice(3, 6)).flat();
+
+  return rowIndexes.map((i) => matrix[i].slice(...columnStartEndIndexes)).flat();
 }
 
 /**
